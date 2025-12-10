@@ -1,0 +1,28 @@
+{
+  "name": "cvd-sim dev",
+  "dockerComposeFile": "compose.yaml",
+  "service": "cvd-sim-dev",
+  "workspaceFolder": "/workspaces/cvd-sim",
+
+  // ホスト側で UID/GID を .env に書き出す
+  "initializeCommand": "bash .devcontainer/init-uid-gid.sh",
+
+  // devcontainer 内で実行される
+  "postCreateCommand": "python -m venv ~/.venv-cvd && ~/.venv-cvd/bin/pip install -r /workspaces/cvd-sim/scripts/requirements.txt",
+
+  "remoteUser": "vscode",
+
+  "forwardPorts": [8080],
+
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "/home/vscode/.venv-cvd/bin/python"
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance"
+      ]
+    }
+  }
+}

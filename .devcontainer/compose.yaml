@@ -1,0 +1,14 @@
+services:
+  cvd-sim-dev:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+      args:
+        USERNAME: vscode
+        USER_UID: ${HOST_UID:-1000}
+        USER_GID: ${HOST_GID:-1000}
+    volumes:
+      - ..:/workspaces/cvd-sim
+    command: ["sleep", "infinity"]
+    tty: true
+    stdin_open: true
